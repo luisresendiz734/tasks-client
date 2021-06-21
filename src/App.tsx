@@ -1,26 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Layout from "./components/Layout";
+import { useUser } from "./context/UserContext";
+import TasksScreen from "./components/TasksScreen";
+import LoginScreen from "./components/LoginScreen";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  const { user } = useUser();
+  return <Layout>{user ? <TasksScreen /> : <LoginScreen />}</Layout>;
+};
 
 export default App;
